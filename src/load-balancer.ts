@@ -9,16 +9,53 @@ const allServers = [
   `http://localhost:${FIRST_SERVER_PORT}`,
   `http://localhost:${SECOND_SERVER_PORT}`,
 ]
+
+let healthyServers = [...allServers]
 let currentServer = 0
 
 // Create a proxy server with custom application logic
 const proxy = httpProxy.createProxyServer({})
 
-// Round Robin algorithm
+// Health check function
+function checkServerHealth(server: string) {
+  return new Promise((resolve) => {
+    http
+      .get(server, (res) => {
+        if (res.statusCode === 200) {
+          resolve(true)
+        } else {
+          resolve(false)
+        }
+      })
+      .on('error', () => {
+        resolve(false)
+      })
+  })
+}
+
+async function performHealthChecks() {
+  const healthStatus = await Promise.all(allServers.map(checkServerHealth))
+  healthyServers = allServers.filter((_, index) => healthStatus[index])
+}
+
+// Periodically check the health of all servers
+setInterval(() => {
+  performHealthChecks()
+    .then(() => {
+      console.log('Health check performed')
+    })
+    .catch((err) => {
+      console.error('Health check failed', err)
+    })
+}, 10000) // Every 10 seconds
+
+// Round Robin algorithm for healthy servers
 function getNextServer() {
-  const next = allServers[currentServer]
-  currentServer = (currentServer + 1) % allServers.length
-  return next
+  if (healthyServers.length === 0) return null
+
+  const server = healthyServers[currentServer % healthyServers.length]
+  currentServer = (currentServer + 1) % healthyServers.length
+  return server
 }
 
 // Create your server
