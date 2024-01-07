@@ -1,0 +1,2 @@
+export const FIRST_SERVER_PORT = 8080
+export const SECOND_SERVER_PORT = 8081

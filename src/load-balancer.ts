@@ -2,8 +2,7 @@ import http from 'http'
 
 import httpProxy from 'http-proxy'
 
-const FIRST_SERVER_PORT = 8080
-const SECOND_SERVER_PORT = 8081
+import { FIRST_SERVER_PORT, SECOND_SERVER_PORT } from './constants'
 
 // Original list of servers
 const allServers = [

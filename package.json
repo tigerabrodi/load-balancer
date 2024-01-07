@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc",
     "load-balancer": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node src/load-balancer.ts'",
+    "first-server": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node src/server1.ts'",
+    "second-server": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node src/server2.ts'",
     "test": "vitest"
   },
   "keywords": [],
