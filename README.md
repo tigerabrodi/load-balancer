@@ -37,12 +37,37 @@ Think of a busy crossing with cars coming from many directions. A traffic cop st
 
 6 common load balancing algorithms:
 
-- application layer
-- different levels of OSI seven layer network model
-- listen for incoming connections and forward them to a single server
-- round robin
-- load balancing algorithms
-- starting multiple servers node.js
-- health check, periodically, specify health check url
-- health check should be a background task concurrently to handling the requests
-- http-proxy
+1. **Round Robin**
+
+   - **Analogy**: Like taking turns in a game. Each server gets a request in turn.
+   - **How it Works**: Requests are distributed sequentially and equally across the servers. Once the last server is reached, it starts again from the first.
+   - **Best For**: Environments where servers are of approximately equal capacity.
+
+2. **Least Connections**
+
+   - **Analogy**: Like a new cashier opening a lane for customers with fewer items.
+   - **How it Works**: Directs traffic to the server with the fewest active connections. Ideal for long-lived connections.
+   - **Best For**: Situations where sessions have varying lengths.
+
+3. **Least Response Time**
+
+   - **Analogy**: Like choosing the shortest line in a grocery store based on both the number of people and their cart sizes.
+   - **How it Works**: Sends requests to the server with the least active connections and the lowest average response time.
+   - **Best For**: Ensuring fast response times.
+
+4. **Hash-Based**
+
+   - **Analogy**: Like assigning students to groups based on their last names.
+   - **How it Works**: Uses a unique key (like IP address or session ID) to direct traffic, ensuring that a particular user is consistently sent to the same server.
+   - **Best For**: Maintaining user session persistence.
+
+5. **IP Hash**
+
+   - **Analogy**: Like assigning parking spaces based on car license plate numbers.
+   - **How it Works**: Uses the IP address of the client to determine which server receives the request.
+   - **Best For**: Environments where session persistence is important.
+
+6. **Weighted Load Balancing**
+   - **Analogy**: Like giving more tasks to more capable team members.
+   - **How it Works**: Assigns weights to servers based on their capacity. Servers with higher capacities handle more requests.
+   - **Best For**: Networks with servers of varying capacities.
