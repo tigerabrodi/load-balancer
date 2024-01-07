@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "load-balancer": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node src/index.ts'",
+    "load-balancer": "nodemon --watch 'src/**/*' -e ts --exec 'ts-node src/load-balancer.ts'",
     "test": "vitest"
   },
   "keywords": [],
