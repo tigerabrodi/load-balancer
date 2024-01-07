@@ -1,5 +1,28 @@
 # Load Balancer from scratch
 
+Built a load balancer from scratch. Includes Round Robin algorithm and health check. 🤘
+
+## How to try it
+
+Clone it.
+
+Run `npm install`.
+
+Open 4 different terminals.
+
+1. Start load balancer: `npm run load-balancer`
+2. Start first server: `npm run first-server`
+3. Start second server: `npm run second-server`
+4. In the last terminal, use `curl` to test the load balancer. Simply enter `curl http://localhost:3000`.
+
+You should see responses alternate. Server 1, then Server 2.
+
+Health check happens every 10th second.
+
+Feel free to shut down one of the servers and play around with the code. 💪
+
+Health checks are being
+
 # OSI Seven Layer Network Model
 
 1. **Physical Layer**: Deals with the physical transmission of data over network cables or wireless signals.
