@@ -17,11 +17,9 @@ Open 4 different terminals.
 
 You should see responses alternate. Server 1, then Server 2.
 
-Health check happens every 10th second.
+Health check happens every 10th second. They're done in the background.
 
 Feel free to shut down one of the servers and play around with the code. 💪
-
-Health checks are being
 
 # OSI Seven Layer Network Model
 
