@@ -13,7 +13,7 @@ const allServers = [
 let healthyServers = [...allServers]
 let currentServer = 0
 
-// Create a proxy server with custom application logic
+// Proxy serves as the load balancer
 const proxy = httpProxy.createProxyServer({})
 
 // Health check function
@@ -58,7 +58,6 @@ function getNextServer() {
   return server
 }
 
-// Create your server
 const server = http.createServer((req, res) => {
   const target = getNextServer()
 
